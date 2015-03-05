@@ -65,7 +65,7 @@ win2003和2008，WEB环境配置（IIS、FTP、伪静态、php、mysql、SqlServ
 - 数据库相关：MySQL/SqlServer
 - 版本管理、文档和自动化部署工具：Git/PHPDoc/Composer
 - 云和开放平台：SAE/BAE
-- 操作系统：Ubuntu/win2003
+- 操作系统：Ubuntu/centos/win2003
 - 具备良好的代码风格和命名规范
 
 ---
