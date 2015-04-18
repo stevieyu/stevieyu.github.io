@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <!--<html lang="zh-CN" manifest="manifest.php"-->
@@ -13,7 +12,7 @@
 <script src="http://dgjxcdn.qiniudn.com/mobile/git/jquery.mobile-git.min.js"></script>
  <script type="text/javascript"> 
     $(document).bind("mobileinit", function() { 
-      $.mobile.autoInitializePage = false; 
+      
     }); 
   </script>
 </head>
@@ -36,7 +35,7 @@ function getLocation(){
      // 后两个不是必要参数
      var setOptions = {
           //是否使用高精度设备，如GPS。默认是true
-         //enableHighAccuracy:true,
+         enableHighAccuracy:false,
           //超时时间，单位毫秒，默认为0
           timeout:5000,
           //使用设置时间内的缓存数据，单位毫秒
