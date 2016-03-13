@@ -21,7 +21,7 @@ var html5_Geolocation_gps = {
     /*
     获取定位信息
     */
-    getLocation = function(){
+    getLocation : function(){
         if (navigator.geolocation){
 
             /*
@@ -67,7 +67,7 @@ var html5_Geolocation_gps = {
     /*
     显示定位信息
     */
-    ,showPosition = function(position){
+    ,showPosition : function(position){
         console.group("定位信息");
             /*
             getCurrentPosition执行成功后，会把getSuccess传一个position对象
@@ -117,7 +117,7 @@ var html5_Geolocation_gps = {
     /*
     显示错误
     */
-    ,showError = function showError(error) {
+    ,showError : function showError(error) {
         var msgstr = '';
         switch(error.code){
             case error.PERMISSION_DENIED:
