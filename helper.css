@@ -434,7 +434,9 @@
   font-style: italic;
 }
 /*https://github.com/twbs/bootstrap/blob/v4-dev/dist/css/bootstrap.css#L6433*/
-
+.font-size-0 {
+  font-size: 0;
+}
 /*https://github.com/twbs/bootstrap/blob/v4-dev/dist/css/bootstrap.css#L6483*/
 .text-hide {
   font: 0/0 a;
