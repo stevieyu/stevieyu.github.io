@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <script src="https://cdn.jsdelivr.net/npm/image-capture@0.4.0/lib/imagecapture.min.js"></script>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <video id="video"></video>
+<script>
+  var videoDevice;
+var canvas = document.getElementById('canvas');
+var photo = document.getElementById('photo');
+
+navigator.mediaDevices.getUserMedia({video: true}).then(gotMedia).catch(failedToGetMedia);
+
+function gotMedia(mediaStream) {
+  // Extract video track.
+  videoDevice = mediaStream.getVideoTracks()[0];
+  // Check if this device supports a picture mode...
+  let captureDevice = new ImageCapture(videoDevice);
+  if (captureDevice) {
+    captureDevice.takePhoto().then(processPhoto).catch(stopCamera);
+    captureDevice.grabFrame().then(processFrame).catch(stopCamera);
+  }
+}
+
+function processPhoto(blob) {
+  photo.src = window.URL.createObjectURL(blob);
+}
+
+function processFrame(imageBitmap) {
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  canvas.getContext('2d').drawImage(imageBitmap, 0, 0);
+}
+
+function stopCamera(error) {
+  console.error(error);
+  if (videoDevice) videoDevice.stop();  // turn off the camera
+}
+
+photo.addEventListener('load', function () {
+  // After the image loads, discard the image object to release the memory
+  window.URL.revokeObjectURL(this.src);
+});
+</script>
+</body>
+</html>
