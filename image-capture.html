@@ -15,8 +15,12 @@
   var videoDevice;
 var canvas = document.getElementById('canvas');
 var photo = document.getElementById('photo');
-
-navigator.mediaDevices.getUserMedia({video: true})
+var front = false
+  
+navigator.mediaDevices
+  .getUserMedia({
+    video: { facingMode: (front? "user" : "environment") }
+  })
   .then(gotMedia)
   .catch(function(e){
     console.log(e)
