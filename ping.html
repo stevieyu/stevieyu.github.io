@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网络ping</title>
+</head>
+<body>
+	<script>
+  function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+		var request_image=function(n){return new Promise(function(e,t){var o=new Image;o.onload=function(){e(o)},o.onerror=function(){t(n)},o.src=n+"?random-no-cache="+Math.floor(65536*(1+Math.random())).toString(16)})},ping=function(n,e){return new Promise(function(t,o){var r=(new Date).getTime(),i=function(){var n=(new Date).getTime()-r;t(n*=e||1)};request_image(n).then(i).catch(i),setTimeout(function(){o(Error("Timeout"))},5e3)})};
+ping(GetQueryString('url')).then(function(delta) {
+    alert('Ping time was ' + String(delta) + ' ms');
+}).catch(function(err) {
+    alert('Could not ping remote URL', err);
+});
+	</script>
+</body>
+</html>
