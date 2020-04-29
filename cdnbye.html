@@ -14,7 +14,7 @@
                 // Other p2pConfig options provided by CDNBye
             }
         });
-        hls.loadSource('http://test.stevie.flyyweb.com/video/bbb_sunflower_1080p_30fps_normal.mp4');
+        hls.loadSource('http://test.stevie.flyyweb.com/video/bbb_sunflower_1080p_30fps_normal.mp4?avvod/m3u8');
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
             video.play();
