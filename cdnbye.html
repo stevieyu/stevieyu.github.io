@@ -9,12 +9,13 @@
         var video = document.getElementById('video');
         var hls = new Hls({
             p2pConfig: {
+                wsSignalerAddr: 'wss://signal.cdnbye.com',
                 logLevel: true,
                 live: false,        // 如果是直播设为true
                 // Other p2pConfig options provided by CDNBye
             }
         });
-        hls.loadSource('http://media-resource.com0.z0.glb.qiniucdn.com/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8%E8%A7%86%E9%A2%91%EF%BC%8D%E4%B8%89%E5%91%A8%E5%B9%B4.mp4?avvod/m3u8/s/960x640/vb/1000k');
+        hls.loadSource('http://media-resource.com0.z0.glb.qiniucdn.com/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8%E8%A7%86%E9%A2%91%EF%BC%8D%E4%B8%89%E5%91%A8%E5%B9%B4.mp4?avvod/m3u8');
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
             video.play();
