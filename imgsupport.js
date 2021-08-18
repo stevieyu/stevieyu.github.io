@@ -4,11 +4,14 @@
 
   function setHTMLClass(height, className) {
     checkCount++;
+    if(document.documentElement.className.length){
+      document.documentElement.className += " ";
+    }
     if (height == 2) {
       formatFound = true;
-      document.documentElement.className += " " + className;
+      document.documentElement.className += className;
     } else {
-      document.documentElement.className += " not" + className;
+      document.documentElement.className += "not" + className;
       if (checkCount == 4 && !formatFound) {
         if (
           document.implementation.hasFeature(
