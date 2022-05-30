@@ -1,5 +1,4 @@
 # 自我评价
-有, ，有4年带领团队负责项目
 6年php开发, 掌握 Laravel 开发应用以及生态，掌握 Mysql 查询优化, 熟悉 lnmp 配置优化。
 了解 ThinkPHP、Yii等其他PHP框架，了解 Swoole、Workerman。
 2年web前端开发，对前端性能优化、安全有充足的实践, 熟练运用主流的 JS 库和开发框架，熟练配置webpack rollup等打包工具以及相关生态，修改过相关插件，掌握uni-app、taro等跨端小程序开发, 了解微前端架构；
