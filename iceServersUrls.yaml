@@ -1,3 +1,7 @@
+# https://github.com/pradt2/always-online-stun/blob/master/valid_hosts.txt
+# https://www.metered.ca/tools/openrelay/#-how-to-use
+# https://github.com/Elijah-Bodden/Membrane/blob/main/lib/index.js
+
 stun:stun.l.google.com:19302
 stun:stun.stunprotocol.org
 stun:stun.nextcloud.com:443
@@ -33,5 +37,4 @@ stun:stun.voipstunt.com
 stun:stun.voxgratia.org
 stun:stun.xten.com
 
-# https://github.com/pradt2/always-online-stun/blob/master/valid_hosts.txt
 
