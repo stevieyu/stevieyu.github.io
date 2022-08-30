@@ -2,6 +2,8 @@
 # https://www.metered.ca/tools/openrelay/#-how-to-use
 # https://github.com/Elijah-Bodden/Membrane/blob/main/lib/index.js
 
+# time nc -vu -w 1 stun.l.google.com 19302
+
 stun:stun.l.google.com:19302
 stun:stun.stunprotocol.org
 stun:stun.nextcloud.com:443
