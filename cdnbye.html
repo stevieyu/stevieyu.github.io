@@ -25,7 +25,7 @@
         hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
             //video.play();
         });
-        if(!hls.p2pEngine.isSupported()){
+        if(!P2pEngineHls.isSupported()){
             document.querySelector('#info').innerText = `不支持p2p`
         }
         hls.p2pEngine.on('peers', function (peers) {
