@@ -2,6 +2,7 @@
 <video id="video" controls></video>
 <p id="version"></p>
 <h3>download info:</h3>
+<p id="peers"></p>
 <p id="info"></p>
 <script>
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
@@ -25,7 +26,7 @@
             }
         });
         hls.p2pEngine.on('peers', function (peers) {
-            console.log('peers', peers)
+            document.querySelector('#peers').innerText = `peers: ${peers.join(',')}`
         });
         hls.p2pEngine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded, totalP2PUploaded}) {
             var total = totalHTTPDownloaded + totalP2PDownloaded;
