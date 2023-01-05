@@ -9,7 +9,7 @@
         var video = document.getElementById('video');
         var hls = new Hls({
             p2pConfig: {
-                wsSignalerAddr: 'wss://signal.cdnbye.com',
+                wsSignalerAddr: 'wss://gz.swarmcloud.net',
                 logLevel: true,
                 live: false,        // 如果是直播设为true
                 // Other p2pConfig options provided by CDNBye
@@ -18,7 +18,11 @@
         hls.loadSource('https://video.cdnbye.com/0cf6732evodtransgzp1257070836/ce0efb9b3701925925330591141/v.f100230.m3u8');
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
-            video.play && video.play();
+            try{
+                video.play();
+            }catch(e){
+                //
+            }
         });
         hls.p2pEngine.on('peers', function (peers) {
             console.log('peers', peers)
