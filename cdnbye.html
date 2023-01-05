@@ -4,6 +4,8 @@
 <h3>download info:</h3>
 <p id="peers"></p>
 <p id="info"></p>
+<script src="https://cdn.jsdelivr.net/npm/eruda" crossorigin="anonymous"></script>
+<script>eruda.init()</script>
 <script>
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
     if(Hls.isSupported()) {
@@ -34,5 +36,4 @@
         });
     }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/eruda" crossorigin="anonymous"></script>
-<script>eruda.init()</script>
+
