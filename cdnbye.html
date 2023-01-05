@@ -8,8 +8,23 @@
 <script src="https://cdn.jsdelivr.net/npm/eruda" crossorigin="anonymous"></script>
 <script>eruda.init()</script>
 <script src="https://cdn.jsdelivr.net/npm/cdnbye@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls-sw@latest"></script>
 <script>
     document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
+    
+    var ios = new P2PEngineIOS({
+        logLevel: 'debug',
+        // p2pEnabled: false,
+        announceLocation: 'hk',        // if using Hongkong tracker
+        nativePlaybackOnly: true,    // key step: only enabled while MSE is not supported
+    })
+
+    ios.registerServiceWorker().then(function (registration) {
+        console.info('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch((err) => {
+        console.info('ServiceWorker registration failed ', err)
+    })
+    
     if(Hls.isSupported()) {
         var video = document.getElementById('video');
         var hls = new Hls({
