@@ -18,7 +18,7 @@
         hls.loadSource('https://video.cdnbye.com/0cf6732evodtransgzp1257070836/ce0efb9b3701925925330591141/v.f100230.m3u8');
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
-            video.play();
+            video.play && video.play();
         });
         hls.p2pEngine.on('peers', function (peers) {
             console.log('peers', peers)
