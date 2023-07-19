@@ -31,30 +31,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # - name: Get npm cache directory
-      #   id: npm-cache-dir
-      #   shell: bash
-      #   run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-      # - uses: actions/cache@v3
-      #   id: npm-cache
-      #   with:
-      #     path: ${{ steps.npm-cache-dir.outputs.dir }}
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
+
       - name: Build
         uses: actions/setup-node@v3
         with: 
           node-version: '18.x'
           cache: 'pnpm'
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
       - run: pnpm i && pnpm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
           path: 'dist'
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
