@@ -10,10 +10,10 @@ export default defineConfig({
         {
           tag: 'script',
           attrs: {
-            src: 'https://cdn.skypack.dev/@hotwired/turbo?min',
+            src: '/turbo.mjs',
             type: 'module'
           }
-        }
+        },
       ],
       locales: {
         root: {
