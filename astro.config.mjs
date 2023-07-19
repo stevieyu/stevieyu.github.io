@@ -6,9 +6,6 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Stevie',
-      editLink: {
-        baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master',
-      },
       head: [
         {
           tag: 'script',
@@ -25,7 +22,7 @@ export default defineConfig({
         },
       },    
       social: {
-        github: 'https://github.com/stevieyu/stevieyu.github.io',
+        github: 'https://github.com/stevieyu',
       },
       sidebar: [
         {
@@ -40,7 +37,10 @@ export default defineConfig({
           autogenerate: { directory: 'reference' },
         },
       ],
-      lastUpdated: true
+      lastUpdated: true,
+      editLink: {
+        baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master',
+      }
     }),
   ],
 
