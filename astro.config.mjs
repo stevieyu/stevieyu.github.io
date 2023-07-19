@@ -6,8 +6,26 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Stevie',
+      editLink: {
+        baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master',
+      },
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: 'https://cdn.skypack.dev/@hotwired/turbo?min',
+            type: 'module'
+          }
+        }
+      ],
+      locales: {
+        root: {
+          label: '简体中文',
+          lang: 'zh-CN',
+        },
+      },    
       social: {
-        github: 'https://github.com/stevieyu',
+        github: 'https://github.com/stevieyu/stevieyu.github.io',
       },
       sidebar: [
         {
@@ -22,6 +40,7 @@ export default defineConfig({
           autogenerate: { directory: 'reference' },
         },
       ],
+      lastUpdated: true
     }),
   ],
 
