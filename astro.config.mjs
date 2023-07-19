@@ -10,7 +10,7 @@ export default defineConfig({
         {
           tag: 'script',
           attrs: {
-            src: '/turbo.mjs',
+            src: '/turbo.js',
             type: 'module'
           }
         },
