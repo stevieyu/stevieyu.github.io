@@ -1,0 +1,5 @@
+
+vscode:
+  extensions:
+    - astro-build.astro-vscode
+    - unifiedjs.vscode-mdx
