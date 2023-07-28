@@ -1,5 +1,5 @@
-import 'https://cdn.skypack.dev/@hotwired/turbo?min'
-import morphdom from 'https://cdn.skypack.dev/morphdom?min'
+import 'https://skypack-1251075901.cos-website.ap-hongkong.myqcloud.com/@hotwired/turbo?min'
+import morphdom from 'https://skypack-1251075901.cos-website.ap-hongkong.myqcloud.com/morphdom?min'
 addEventListener("turbo:before-render", (event) => {
 	event.detail.render = (currentElement, newElement) => {
 		morphdom(currentElement.querySelector(`.main-frame`), newElement.querySelector(`.main-frame`))
