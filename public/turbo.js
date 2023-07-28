@@ -15,8 +15,8 @@ addEventListener("turbo:before-visit", (event) => {
 	}
 })
 
-import OpenReplay from 'https://esm.sh/@openreplay/tracker?bundle'
-import * as Sentry from 'https://esm.sh/@sentry/browser?bundle'
+import OpenReplay from 'https://skypack-1251075901.cos-website.ap-hongkong.myqcloud.com/@openreplay/tracker?min'
+import * as Sentry from 'https://skypack-1251075901.cos-website.ap-hongkong.myqcloud.com/@sentry/browser?min'
 Sentry.init({
 	dsn: "https://6318dba86435427c87869099519ca6e5@o39671.ingest.sentry.io/4505327000158208",
 	integrations: [
