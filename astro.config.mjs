@@ -12,7 +12,7 @@ export default defineConfig({
           attrs: {
             src: '/turbo.js',
             type: 'module',
-            defer: true
+            async: true
           }
         },
       ],
