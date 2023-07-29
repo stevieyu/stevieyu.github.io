@@ -7,8 +7,8 @@ export default defineConfig({
     starlight({
       title: 'Stevie',
       logo: {
-				src: 'https://avatars.githubusercontent.com/u/8325201?v=4',
-			},
+        src: 'https://avatars.githubusercontent.com/u/8325201?v=4',
+      },
       head: [
         {
           tag: 'script',
