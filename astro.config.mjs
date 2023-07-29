@@ -6,12 +6,12 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Stevie',
-      logo: {
+      // logo: {
         // light: './src/assets/light-logo.svg',
         // dark: './src/assets/dark-logo.svg',
         // src: 'https://avatars.githubusercontent.com/u/8325201?v=4',
         // replacesTitle: true,
-      },
+      // },
       head: [
         {
           tag: 'script',
