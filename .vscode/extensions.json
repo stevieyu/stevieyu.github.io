@@ -1,5 +1,4 @@
 {
-  "recommendations": [
-    "reflame.agent",
-  ]
+  "recommendations": ["astro-build.astro-vscode"],
+  "unwantedRecommendations": []
 }
