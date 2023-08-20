@@ -14,6 +14,13 @@ addEventListener("turbo:before-visit", (event) => {
 		location.href = event.detail.url
 	}
 })
+addEventListener('popstate', function (e) {
+    if (e.state) {
+	console.log('e.state', e.state)
+	//Turbo.visit('/guides/example/')
+        //load content with ajax
+    }
+});
 
 import OpenReplay from 'https://esm-1251075901.cos-website.ap-hongkong.myqcloud.com/@openreplay/tracker?bundle'
 import * as Sentry from 'https://esm-1251075901.cos-website.ap-hongkong.myqcloud.com/@sentry/browser?bundle'
