@@ -16,7 +16,7 @@ export default defineConfig({
         {
           tag: 'script',
           attrs: {
-            src: '/turbo.js',
+            src: '/services.js',
             type: 'module',
             defer: true
           }
