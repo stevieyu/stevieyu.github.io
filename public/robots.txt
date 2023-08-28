@@ -2,5 +2,5 @@
 User-agent: *
 Disallow: 
 Disallow: /admin
-Sitemap: /sitemap.xml
-Sitemap: /sitemap.html
+Sitemap: /sitemap-index.xml
+

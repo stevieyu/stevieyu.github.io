@@ -1,5 +1,5 @@
-import 'https://xg-1251075901.file.myqcloud.com/v131/@hotwired/turbo?bundle'
-import morphdom from 'https://xg-1251075901.file.myqcloud.com/v131/morphdom?bundle'
+import 'https://esm.sh/@hotwired/turbo?bundle'
+import morphdom from 'https://esm.sh/morphdom?bundle'
 addEventListener("turbo:before-render", (event) => {
 	event.detail.render = (currentElement, newElement) => {
 		morphdom(currentElement.querySelector(`.main-frame`), newElement.querySelector(`.main-frame`))
@@ -20,8 +20,8 @@ addEventListener('popstate', (event) => {
     }
 });
 
-import OpenReplay from 'https://xg-1251075901.file.myqcloud.com/v131/@openreplay/tracker?bundle'
-import * as Sentry from 'https://xg-1251075901.file.myqcloud.com/v131/@sentry/browser?bundle'
+import OpenReplay from 'https://esm.sh/@openreplay/tracker?bundle'
+import * as Sentry from 'https://esm.sh/@sentry/browser?bundle'
 Sentry.init({
 	dsn: "https://6318dba86435427c87869099519ca6e5@o39671.ingest.sentry.io/4505327000158208",
 	integrations: [
