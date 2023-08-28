@@ -2,5 +2,5 @@
 User-agent: *
 Disallow: 
 Disallow: /admin
-Sitemap: /sitemap-index.xml
+Sitemap: https://stevie.top/sitemap-index.xml
 
