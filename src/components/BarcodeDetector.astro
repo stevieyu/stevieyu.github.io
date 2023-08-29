@@ -1,7 +1,7 @@
 ---
 const exampleImagesSrc = [
     'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Hello%20world!',
-    'https://stu.jiakao520.cn/static.php?http://www.t-x-m.com/barcode.asp?bc1=123456789012&bc2=10&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1'
+    'http://www.t-x-m.com/barcode.asp?bc1=123456789012&bc2=10&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1'
 ]
 ---
 <script type="module">
@@ -11,7 +11,7 @@ const exampleImagesSrc = [
     });
 
     const detectSrc = async (src) => {
-        const imageFile = await fetch(src).then((resp) => resp.blob());
+        const imageFile = await fetch('https://stu.jiakao520.cn/static.php?' + src).then((resp) => resp.blob());
         return barcodeDetector.detect(imageFile)
     }
 
