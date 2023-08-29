@@ -11,7 +11,8 @@ const exampleImagesSrc = [
     });
 
     const detectSrc = async (src) => {
-        const imageFile = await fetch('https://stu.jiakao520.cn/static.php?' + src).then((resp) => resp.blob());
+        if(!src.includes('static')) src = 'https://stu.jiakao520.cn/static.php?' + src
+        const imageFile = await fetch(src).then((resp) => resp.blob());
         return barcodeDetector.detect(imageFile)
     }
 
