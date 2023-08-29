@@ -2,7 +2,7 @@
 const exampleImagesSrc = [
     'https://api.pwmqr.com/qrcode/create/?url=https%3A%2F%2Fwww.pwmqr.com',
     'http://www.t-x-m.com/barcode.asp?bc1=123456789012&bc2=10&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1'
-]
+].map(src => 'https://wsrv.nl/?url=' + encodeURIComponent(src.replace(/https?:\/\//, '')))
 ---
 <script type="module">
     import { BarcodeDetector } from "https://gcore.jsdelivr.net/npm/barcode-detector@2/dist/es/pure.min.js";
@@ -11,7 +11,7 @@ const exampleImagesSrc = [
     });
 
     const detectSrc = async (src) => {
-        src = 'https://wsrv.nl/?url=' + encodeURIComponent(src.replace(/https?:\/\//, ''))
+        if(!src.includes('wsrv')) src = 'https://wsrv.nl/?url=' + encodeURIComponent(src.replace(/https?:\/\//, ''))
         const imageFile = await fetch(src).then((resp) => resp.blob());
         return barcodeDetector.detect(imageFile)
     }
@@ -30,6 +30,7 @@ const exampleImagesSrc = [
 
     document.querySelector('#click-images').addEventListener('click', (e)=> {
         renderRes(e.target.src)
+        history.replaceState('', '', location.pathname + '?src=' + e.target.src)
     })
 </script>
 
