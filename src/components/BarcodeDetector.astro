@@ -17,7 +17,7 @@ const exampleImagesSrc = [
     }
 
     const renderRes = (src) => {
-        if(!/^https?:/.test(src)) return
+        if(!src || !/^https?:/.test(src)) return
         detectSrc(src).then(res => {
             if(!res.length) return
             console.log(...res, src)
@@ -29,6 +29,7 @@ const exampleImagesSrc = [
     renderRes(bsadSrc)
 
     document.querySelector('#click-images').addEventListener('click', (e)=> {
+        if(!e.target.src) return
         renderRes(e.target.src)
         history.replaceState('', '', location.pathname + '?src=' + e.target.src)
     })
