@@ -66,10 +66,13 @@ export default defineConfig({
     editLink: {
       baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master'
     }
-  })
+  }),
   // https://docs.astro.build/en/guides/integrations-guide/partytown/
-  // partytown()
-  , tailwind()],
+  // partytown(),
+  tailwind({
+    applyBaseStyles: false,
+  }),
+  ],
   // https://docs.astro.build/en/guides/assets/#using-sharp
   image: {
     service: {
