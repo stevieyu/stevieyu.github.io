@@ -1,0 +1,45 @@
+---
+const exampleImagesSrc = [
+    'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Hello%20world!',
+    'https://stu.jiakao520.cn/static.php?http://www.t-x-m.com/barcode.asp?bc1=123456789012&bc2=10&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1'
+]
+---
+<script type="module">
+    import { BarcodeDetector } from "https://gcore.jsdelivr.net/npm/barcode-detector@2/dist/es/pure.min.js";
+    const barcodeDetector = new BarcodeDetector({
+        // formats: ["qr_code"],
+    });
+
+    const detectSrc = async (src) => {
+        const imageFile = await fetch(src).then((resp) => resp.blob());
+        return barcodeDetector.detect(imageFile)
+    }
+
+    const renderRes = (src) => {
+        if(!/^https?:/.test(src)) return
+        detectSrc(src).then(res => {
+            if(!res.length) return
+            console.log(...res, src)
+            document.querySelector('#out').innerText += res.map(i => i.rawValue).join("\n") + "\n"
+        })
+    }
+
+    const bsadSrc = new URLSearchParams(location.search).get('src')
+    renderRes(bsadSrc)
+
+    document.querySelector('#click-images').addEventListener('click', (e)=> {
+        renderRes(e.target.src)
+    })
+</script>
+
+<div class="flex">
+    <div id="in" class="w-1/2"></div>
+    <pre id="out" class="w-1/2"></pre>
+</div>
+<div class="flex" id="click-images">
+    {exampleImagesSrc.map((item) => (
+         <div class="w-1/3 p-2">
+            <img src={item} class="w-full"/>
+         </div>
+    ))}
+</div>
