@@ -80,6 +80,8 @@ export default defineConfig({
     }
   },
   experimental: {
+    // https://docs.astro.build/en/guides/view-transitions/#enabling-view-transitions-in-your-project
+    viewTransitions: true,
     assets: true
   }
 });
