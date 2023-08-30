@@ -70,7 +70,7 @@ export default defineConfig({
   // https://docs.astro.build/en/guides/integrations-guide/partytown/
   // partytown(),
   tailwind({
-    applyBaseStyles: false,
+    // applyBaseStyles: false,
   }),
   ],
   // https://docs.astro.build/en/guides/assets/#using-sharp
