@@ -26,14 +26,14 @@ export default defineConfig({
       // replacesTitle: true,
       // },
       head: [
-        //   {
-        //   tag: 'script',
-        //   attrs: {
-        //     src: '/services.js',
-        //     type: IS_PROD ? 'module' : 'text',
-        //     defer: true
-        //   }
-        // }
+        {
+          tag: 'script',
+          attrs: {
+            src: '/services.js',
+            type: IS_PROD ? 'module' : 'text',
+            defer: true
+          }
+        }
       ],
       customCss: [
         // Relative path to your custom CSS file
