@@ -2,7 +2,7 @@
 const exampleImagesSrc = [
     'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Hello%20world!',
     'http://www.t-x-m.com/barcode.asp?bc1=123456789012&bc2=10&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1'
-].map(src => 'https://wsrv.nl/?url=' + encodeURIComponent(src.replace(/https?:\/\//, '')))
+]
 ---
 <script type="module">
     import { BarcodeDetector } from "https://gcore.jsdelivr.net/npm/barcode-detector@2/dist/es/pure.min.js";
@@ -12,6 +12,9 @@ const exampleImagesSrc = [
 
     const detectSrc = async (src) => {
         if(!src.includes('wsrv')) src = 'https://wsrv.nl/?url=' + encodeURIComponent(src.replace(/https?:\/\//, ''))
+        // if(!src.includes('corsproxy')) src = 'https://corsproxy.io/?url=' + encodeURIComponent(src)
+        // if(!src.includes('allorigins')) src = 'https://api.allorigins.win/get?url=' + encodeURIComponent(src)
+
         const imageFile = await fetch(src).then((resp) => resp.blob());
         return barcodeDetector.detect(imageFile)
     }
@@ -31,7 +34,7 @@ const exampleImagesSrc = [
     document.querySelector('#click-images').addEventListener('click', (e)=> {
         if(!e.target.src) return
         renderRes(e.target.src)
-        history.replaceState('', '', location.pathname + '?src=' + e.target.src)
+        history.replaceState('', '', location.pathname + '?src=' + encodeURIComponent(e.target.src))
     })
 </script>
 
