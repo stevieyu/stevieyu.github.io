@@ -11,67 +11,74 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 export default defineConfig({
   site: 'https://stevie.top',
   integrations: [
-  // https://docs.astro.build/en/guides/integrations-guide/sitemap/
-  sitemap(),
-  // https://docs.astro.build/en/guides/integrations-guide/prefetch/
-  // prefetch({
-  //   selector: "a[href^='/']"
-  // }),
-  // https://starlight.astro.build/
-  starlight({
-    title: 'Stevie',
-    // logo: {
-    // light: './src/assets/light-logo.svg',
-    // dark: './src/assets/dark-logo.svg',
-    // src: 'https://avatars.githubusercontent.com/u/8325201?v=4',
-    // replacesTitle: true,
-    // },
-    head: [{
-      tag: 'script',
-      attrs: {
-        src: '/services.js',
-        type: IS_PROD ? 'module' : 'text',
-        defer: true
+    // https://docs.astro.build/en/guides/integrations-guide/prefetch/
+    // prefetch({
+    //   selector: "a[href^='/']"
+    // }),
+    // https://starlight.astro.build/
+    starlight({
+      title: 'Stevie Home',
+      description: '个人主页',
+      // logo: {
+      // light: './src/assets/light-logo.svg',
+      // dark: './src/assets/dark-logo.svg',
+      // src: 'https://avatars.githubusercontent.com/u/8325201?v=4',
+      // replacesTitle: true,
+      // },
+      head: [
+        //   {
+        //   tag: 'script',
+        //   attrs: {
+        //     src: '/services.js',
+        //     type: IS_PROD ? 'module' : 'text',
+        //     defer: true
+        //   }
+        // }
+      ],
+      customCss: [
+        // Relative path to your custom CSS file
+        './src/tailwind.css',
+      ],
+      locales: {
+        root: {
+          label: '简体中文',
+          lang: 'zh-CN'
+        }
+      },
+      social: {
+        github: 'https://github.com/stevieyu'
+      },
+      sidebar: [{
+        label: 'Guides',
+        items: [
+          // Each item here is one entry in the navigation menu.
+          {
+            label: 'Example Guide',
+            link: '/guides/example/'
+          }]
+      }, {
+        label: 'Reference',
+        autogenerate: {
+          directory: 'reference'
+        }
+      }, {
+        label: '例子',
+        autogenerate: {
+          directory: 'examples'
+        }
+      }],
+      lastUpdated: true,
+      editLink: {
+        baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master'
       }
-    }],
-    locales: {
-      root: {
-        label: '简体中文',
-        lang: 'zh-CN'
-      }
-    },
-    social: {
-      github: 'https://github.com/stevieyu'
-    },
-    sidebar: [{
-      label: 'Guides',
-      items: [
-      // Each item here is one entry in the navigation menu.
-      {
-        label: 'Example Guide',
-        link: '/guides/example/'
-      }]
-    }, {
-      label: 'Reference',
-      autogenerate: {
-        directory: 'reference'
-      }
-    }, {
-      label: '例子',
-      autogenerate: {
-        directory: 'examples'
-      }
-    }],
-    lastUpdated: true,
-    editLink: {
-      baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master'
-    }
-  }),
-  // https://docs.astro.build/en/guides/integrations-guide/partytown/
-  // partytown(),
-  tailwind({
-    // applyBaseStyles: false,
-  }),
+    })
+    // https://docs.astro.build/en/guides/integrations-guide/partytown/
+    // partytown(),
+    , tailwind({
+      applyBaseStyles: false,
+    }),
+    // https://docs.astro.build/en/guides/integrations-guide/sitemap/
+    // sitemap(),
   ],
   // https://docs.astro.build/en/guides/assets/#using-sharp
   image: {
@@ -79,10 +86,4 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp'
     }
   },
-  experimental: {
-    // https://docs.astro.build/en/guides/view-transitions/#enabling-view-transitions-in-your-project
-    viewTransitions: true,
-    // https://docs.astro.build/zh-cn/guides/assets/
-    assets: true
-  }
 });
