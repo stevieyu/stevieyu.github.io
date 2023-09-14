@@ -3,9 +3,9 @@ title: 公共 DNS
 description: ip4 + ip6 + doh + dot
 ---
 
+ip4 + ip6 + doh + dot
 
 ## [腾讯 DNS (DNSPod)](https://www.dnspod.cn/products/publicdns)
-
 
 - IPv4: `119.29.29.29`
 - IPv6: `2402:4e00::`
