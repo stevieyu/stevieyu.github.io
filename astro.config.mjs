@@ -51,7 +51,7 @@ export default defineConfig({
       sidebar: [{
         label: '便笺',
         autogenerate: {
-          directory: 'notes'
+          directory: '便笺'
         }
       }, {
         label: 'Reference',
