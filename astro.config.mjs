@@ -51,17 +51,12 @@ export default defineConfig({
       sidebar: [{
         label: '便笺',
         autogenerate: {
-          directory: '便笺'
-        }
-      }, {
-        label: 'Reference',
-        autogenerate: {
-          directory: 'reference'
+          directory: '_notes'
         }
       }, {
         label: '例子',
         autogenerate: {
-          directory: 'examples'
+          directory: '_examples'
         }
       }],
       lastUpdated: true,
