@@ -49,9 +49,9 @@ export default defineConfig({
         github: 'https://github.com/stevieyu'
       },
       sidebar: [{
-        label: '网络',
+        label: '便笺',
         autogenerate: {
-          directory: 'network'
+          directory: 'notes'
         }
       }, {
         label: 'Reference',
