@@ -1,9 +1,10 @@
-import { defineConfig } from 'astro/config';
+import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
 import prefetch from '@astrojs/prefetch';
 import partytown from '@astrojs/partytown';
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+
 const IS_PROD = process.env.NODE_ENV === 'production';
 
 
@@ -63,10 +64,10 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/stevieyu/stevieyu.github.io/edit/master'
       }
-    })
+    }),
     // https://docs.astro.build/en/guides/integrations-guide/partytown/
     // partytown(),
-    , tailwind({
+    tailwind({
       applyBaseStyles: false,
     }),
     // https://docs.astro.build/en/guides/integrations-guide/sitemap/
