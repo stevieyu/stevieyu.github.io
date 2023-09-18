@@ -38,7 +38,10 @@
         if (Hls.isSupported()) {
             const hls = new Hls({
                 // debug: true,
-                p2pConfig
+                p2pConfig,
+                xhrSetup: xhr => {
+                    xhr.setRequestHeader('X-Space-App-Key', 'uBWrgGMKuog6ioDbhvj9wmc1MMt6ByyW')
+                }
             });
             hls.loadSource(src);
             hls.attachMedia(video);
