@@ -2,11 +2,13 @@
 
 ---
 
+
 <div class="text-center">
     <h1>Hls.js 播放base64视频</h1>
-    <video height="600" id="video" controls></video>
+    <video height="600" id="video" controls />
 </div>
-<script type="module">
+<script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
+<script type="module" is:inline>
     const fetchM3u8 = async (url = '' ) => {
         url = url || 'https://s5.bfzycdn.com/video/moxindiliugan/第12集/index.m3u8';
         let res = await fetch(`https://faas-sgp1-18bc02ac.doserverless.co/api/v1/web/fn-41e9df6e-4d4b-4032-8fb2-e91907859969/sample/hello?`+url)
@@ -19,14 +21,17 @@
     }
     // fetchM3u8()
 
-    import Hls from 'https://esm.sh/hls.js@1.4.12'
-    const player = async (src = '') => {
+    const playerHlsjs = async (src = '') => {
         // src = 'https://hono.dgcf.link/s5.bfzycdn.com/video/moxindiliugan/第12集/index.m3u8'
         src = await fetchM3u8()
         const video = document.getElementById('video');
+        const p2pConfig = {
+            logLevel: 'debug',
+        }
         if (Hls.isSupported()) {
             const hls = new Hls({
                 // debug: true,
+                p2pConfig
             });
             hls.loadSource(src);
             hls.attachMedia(video);
@@ -38,14 +43,17 @@
             // hls.js 在未启用媒体源扩展 （MSE） 的平台上不受支持。
             // 当浏览器具有内置的 HLS 支持（使用 'canPlayType' 进行检查）时，我们可以通过 'src' 属性直接向视频元素提供 HLS 清单（即 .m3u8 URL）。
         // 这是使用纯视频元素的内置支持，而不使用 hls.js。
-        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = src;
-            video.addEventListener('canplay', () => {
-                // video.play();
-            });
+        // else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        //     video.src = src;
+        //     video.addEventListener('canplay', () => {
+        //         // video.play();
+        //     });
+        // }
+        else{
+            new Hls.P2pEngine(p2pConfig);
         }
     }
-    player()
+    playerHlsjs()
 
 
 </script>
