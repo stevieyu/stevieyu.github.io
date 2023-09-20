@@ -27,12 +27,12 @@
     }
     // fetchM3u8()
 
-    const search = new URLSearchParams(location.search)
+    const search = new URLSearchParams(location.search.substring(1))
     const playerHlsjs = async (src = '') => {
         // src = 'https://s5.bfzycdn.com/video/lanman/第76集/index.m3u8'
         src = 'https://cevip.jiguangcdn3.com/f519c91647da1b9df815ec30394f1eb7/index.m3u8'
         src = `https://faas-sgp1-18bc02ac.doserverless.co/api/v1/web/fn-41e9df6e-4d4b-4032-8fb2-e91907859969/default/cors-php?` + src
-        if(search.src) src = search.src
+        if(/^https?:/.test(search.get('src'))) src = search.get('src')
         // src = await fetchM3u8()
         const video = document.getElementById('video');
         const p2pConfig = {
