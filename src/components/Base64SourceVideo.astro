@@ -10,23 +10,29 @@
 <script src="https://cdn.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
 <script type="module" is:inline>
     const fetchM3u8 = async (url = '' ) => {
-        url = url || 'https://s5.bfzycdn.com/video/moxindiliugan/第12集/index.m3u8';
-        url = `https://faas-sgp1-18bc02ac.doserverless.co/api/v1/web/fn-41e9df6e-4d4b-4032-8fb2-e91907859969/sample/hello?`+url
-        url += '&t=base64'
-        let res = await fetch(url)
+        url = url || 'https://s5.bfzycdn.com/video/lanman/第76集/index.m3u8';
+        // url = `https://faas-sgp1-18bc02ac.doserverless.co/api/v1/web/fn-41e9df6e-4d4b-4032-8fb2-e91907859969/default/cors-php?`+url
+        const m3u8proxy = `https://cloud.yepcode.io/api/dgjx/webhooks/10b27730-e1be-42d4-abef-209a9df9a927?`
+        const proxy = 'https://hono.dgcf.link'
+        let res = await fetch(m3u8proxy + url)
             .then(r => r.text());
-        res = res.split(';base64,')
-        const m3u8 = atob(res[1])
+
+        const contentType = 'application/vnd.apple.mpegurl'
+        res = res
             .replace(/#EXT-X-DIS[\s\S]+?SCONTINUITY\n/g, '')
+            .replace(/(\n)https?:\//g, `$1${encodeURI(proxy)}`)
             .replace(/(\n)(\w+.ts)/g, `$1${encodeURI(url.replace(/\w+.m3u8/, ''))}$2`)
-        return [res[0], btoa(m3u8)].join(';base64,')
+        console.log('m3u8:', res)
+        return 'data:' + [contentType, btoa(res)].join(';base64,')
     }
     // fetchM3u8()
 
+    const search = new URLSearchParams(location.search)
     const playerHlsjs = async (src = '') => {
-        // src = 'https://s5.bfzycdn.com/video/moxindiliugan/第12集/index.m3u8'
+        // src = 'https://s5.bfzycdn.com/video/lanman/第76集/index.m3u8'
         src = 'https://cevip.jiguangcdn3.com/f519c91647da1b9df815ec30394f1eb7/index.m3u8'
-        src = `https://faas-sgp1-18bc02ac.doserverless.co/api/v1/web/fn-41e9df6e-4d4b-4032-8fb2-e91907859969/sample/hello?` + src
+        src = `https://faas-sgp1-18bc02ac.doserverless.co/api/v1/web/fn-41e9df6e-4d4b-4032-8fb2-e91907859969/default/cors-php?` + src
+        if(search.src) src = search.src
         // src = await fetchM3u8()
         const video = document.getElementById('video');
         const p2pConfig = {
