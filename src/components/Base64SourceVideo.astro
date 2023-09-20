@@ -44,6 +44,8 @@
         if (Hls.isSupported()) {
             const hls = new Hls({
                 // debug: true,
+                maxBufferLength: 120,
+                maxMaxBufferLength: 600,
                 p2pConfig,
                 xhrSetup: xhr => {
                     // xhr.setRequestHeader('X-Space-App-Key', 'uBWrgGMKuog6ioDbhvj9wmc1MMt6ByyW')
