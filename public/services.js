@@ -1,5 +1,5 @@
-import 'https://esm.sh/@hotwired/turbo@7.3.0?bundle'
-import morphdom from 'https://esm.sh/morphdom@2.7.0?bundle'
+import 'https://s.stevie.top/esm.sh/@hotwired/turbo@7.3.0?bundle'
+import morphdom from 'https://s.stevie.top/esm.sh/morphdom@2.7.0?bundle'
 addEventListener("turbo:before-render", (event) => {
 	event.detail.render = (currentElement, newElement) => {
 		morphdom(currentElement.querySelector(`.main-frame`), newElement.querySelector(`.main-frame`))
@@ -20,8 +20,8 @@ addEventListener('popstate', (event) => {
     }
 });
 
-import OpenReplay from 'https://esm.sh/@openreplay/tracker@9.0.8?bundle'
-import * as Sentry from 'https://esm.sh/@sentry/browser@7.69.0?bundle'
+import OpenReplay from 'https://s.stevie.top/esm.sh/@openreplay/tracker@9.0.8?bundle'
+import * as Sentry from 'https://s.stevie.top/esm.sh/@sentry/browser@7.69.0?bundle'
 Sentry.init({
 	dsn: "https://bf0874f6948140d284dd2ac1e20430b5@o39671.ingest.sentry.io/4505606641745920",
 	integrations: [
