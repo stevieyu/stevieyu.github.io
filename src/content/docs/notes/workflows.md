@@ -13,3 +13,10 @@ description: 工作流平台特点以及价格
 
 - 支持node包引用
 - [4000/月](https://fastgen.com/pricing)
+
+
+## [yepcode](https://cloud.yepcode.io/)
+
+- javascript,python
+- [只支持限定包](https://yepcode.io/docs/libraries)
+- [5000/月](https://cloud.yepcode.io/dgjx/settings/details)
