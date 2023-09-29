@@ -1,0 +1,122 @@
+<script src="https://cdn.bootcdn.net/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+<script src="https://unpkg.b-cdn.net/htmx.org@1.9.6"></script>
+<script src="https://unpkg.b-cdn.net/alpinejs@3.13.0"></script>
+
+<script type="module">
+    const {SimplePeer, htmx, Alpine} = window
+
+    const initPeer = (data = null, iceServers = []) => new Promise((resolve, reject) => {
+        const peer = new SimplePeer({
+            trickle: false, // 设置为 false 以禁用 trickle ICE  并获取单个“信号”事件（较慢）
+            initiator: !data,
+            config: {
+                iceServers
+            },
+        })
+        peer.on('error', reject)
+
+        peer.on('signal', (data) => resolve({peer, data}))
+
+        if (data) peer.signal(data)
+
+        // peer.on('connect', () => {
+        //   console.log('CONNECT')
+        // })
+        //
+        // peer.on('data', data => {
+        //   console.log('data: ' + data)
+        // })
+    })
+
+    const blacklist = {
+        _key: 'blacklist',
+        _list: [],
+        get() {
+            if (!this._list.length) {
+                this._list = (localStorage.getItem(this._key) || '').split(',')
+            }
+            return this._list
+        },
+        set(item) {
+            if (this.has(item)) return;
+            this._list.push(item);
+            localStorage.setItem(this._key, this._list.join(','))
+        },
+        has(...args) {
+            return this._list.includes(...args)
+        },
+    }
+
+    let stop = 0
+    window.testUrl = async ($data) => {
+        if ($data.count) {
+            stop = 1;
+            return;
+        }
+
+        let urls = document.querySelector('textarea').value;
+        if (!urls) return;
+        const maxms = 800;
+        urls = urls.split(`\n`);
+        $data.remain = urls.length - blacklist.get().length
+        while (urls.length) {
+            $data.count++;
+            for (const idx in urls) {
+                if (stop) break;
+                const url = urls[idx];
+                if (!url || blacklist.has(url)) {
+                    urls[idx] = '';
+                    continue;
+                }
+
+                const start = Date.now();
+
+                const {peer, data} = await initPeer(null, [{urls: 'stun:' + url}])
+                peer.destroy()
+
+                const item = $data.list.find(i => i.url === url)
+
+                const ms = Date.now() - start
+                if (ms >= maxms) {
+                    urls[idx] = '';
+                    blacklist.set(url)
+                    if (!item) continue;
+                }
+
+
+                item ? (item.ms = ms) : $data.list.push({url, ms})
+
+                $data.list.sort((a, b) => a.ms - b.ms)
+            }
+            urls = urls.filter(i => i)
+            $data.remain = urls.length
+            if (stop) {
+                $data.count = 0
+                break;
+            }
+        }
+    }
+
+
+</script>
+
+<div x-data="{url: 'https://s.stevie.top/fastly.jsdelivr.net/gh/pradt2/always-online-stun@master/valid_hosts.txt', list: [], count: 0, remain: 0}">
+    <input x-model="url" class="w-full" x-bind:hx-get="url" hx-trigger="mouseleave,load" hx-target="textarea"/>
+    <div class="flex">
+        <button x-on:click="testUrl($data)" x-text="`测试` + (count?'中':'')">测试</button>
+        <textarea class="w-full"></textarea>
+    </div>
+    <span x-text="`第${count}轮测试`"></span>
+    &nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp;
+    <span x-text="`余下${remain}`"></span>
+    <table class="w-full">
+        <template x-for="item of list">
+            <tr>
+                <td x-text="item.url"></td>
+                <td x-text="item.ms"></td>
+            </tr>
+        </template>
+    </table>
+</div>
+
+
