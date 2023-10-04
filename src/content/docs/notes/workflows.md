@@ -29,3 +29,11 @@ description: 工作流平台特点以及价格
 - javascript,python
 - [只支持限定包](https://yepcode.io/docs/libraries)
 - [5000/月](https://cloud.yepcode.io/dgjx/settings/details)
+
+---
+
+## [val.town](https://www.val.town/)
+
+- 支持node包引用,貌似无限制
+- [包例子](https://www.val.town/examples/packages)
+- [1分钟/运行,10运行/分钟,10调用/分钟,15分钟/定时,100私人,无限公共](https://www.val.town/pricing)
