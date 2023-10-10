@@ -13,16 +13,16 @@
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "@astrojs/partytown": "^2.0.0",
-    "@astrojs/prefetch": "^0.4.0",
-    "@astrojs/sitemap": "^3.0.0",
-    "@astrojs/starlight": "^0.10.0",
+    "@astrojs/partytown": "^2.0.1",
+    "@astrojs/prefetch": "^0.4.1",
+    "@astrojs/sitemap": "^3.0.1",
+    "@astrojs/starlight": "^0.11.0",
     "@astrojs/starlight-tailwind": "^2.0.0",
-    "@astrojs/tailwind": "^5.0.0",
-    "astro": "^3.1.0",
+    "@astrojs/tailwind": "^5.0.1",
+    "astro": "^3.2.3",
     "cssnano": "^6.0.1",
-    "postcss-preset-env": "^9.1.3",
-    "sharp": "^0.32.5"
+    "postcss-preset-env": "^9.2.0",
+    "sharp": "^0.32.6"
   },
   "browserslist": [
     "ios >= 12"
