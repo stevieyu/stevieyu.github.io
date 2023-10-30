@@ -36,7 +36,7 @@
         // const proxy = 'https://esm.sctes.stevie.top'
         // const proxy = 'https://s.stevie.top'
         // const proxy = 'https://hono.dgcf.link'
-        src = proxy + '/' + btoa(src.replace('https://', ''));
+        src = proxy + '/' + src.replace('https://', '');
         if(/^https?:/.test(search.get('src'))) src = search.get('src')
         // src = await fetchM3u8()
         const video = document.getElementById('video');
