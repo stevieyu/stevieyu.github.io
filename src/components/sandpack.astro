@@ -1,0 +1,37 @@
+---
+
+---
+<iframe class="w-full border-0" id="iframe"></iframe>
+<script type="module">
+    import { loadSandpackClient } from 'https://s.stevie.top/esm.sh/@codesandbox/sandpack-client@2.9.0?bundle'
+
+    const iframe = document.querySelector("#iframe");
+
+    // Files, environment and dependencies
+    const content = {
+        files: {
+            // We infer dependencies and the entry point from package.json
+            "/package.json": { code: JSON.stringify({
+                    main: "index.js",
+                    type: 'module',
+                    dependencies: { uuid: "latest" },
+                })},
+
+            // Main file
+            "/index.js": { code: `import { v4 } from 'uuid';document.body.innerText = v4();` }
+        },
+        environment: "vanilla"
+    };
+
+    // Optional options
+    const options = {
+        bundlerURL: "https://sandpack-bundler.codesandbox.io",
+    };
+
+    // Properly load and mount the bundler
+    const client = await loadSandpackClient(
+        iframe,
+        content,
+        options
+    );
+</script>
