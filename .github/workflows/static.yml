@@ -45,9 +45,7 @@ jobs:
       - name: generate dist
         run: | 
           pnpm i
-          pnpm run build
-          curl https://github.com/vangelov/devresume/archive/refs/heads/master.tar.gz | tar -xzvf -
-          ls -l
+          pnpm run build          
           
 
       - name: Setup Pages
