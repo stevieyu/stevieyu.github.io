@@ -1,5 +1,5 @@
 <?php
-function URL($url): int|array|string
+function url($url): int|array|string
 {
     $parseUrl = parse_url($url);
     $parseUrl['origin'] = $parseUrl['scheme'] . '://' . $parseUrl['host'];
@@ -15,7 +15,7 @@ function encodeURI($uri): array|string|null
     );
 }
 
-function fetchReplace($url, $rqc = 0): array|false|string|null
+function fetchReplace($url): array|false|string|null
 {
     // $proxy = 'https://hono.dgcf.link';
     $proxy = 'https://esm.sctes.stevie.top';
@@ -23,7 +23,7 @@ function fetchReplace($url, $rqc = 0): array|false|string|null
     $rules = [
         [
             'pattern' => '/(\n)(\/\w+\/)/',
-            'replacement' => fn($url) => '$1' . $proxy.'/'.URL($url)['host'] . '$2',
+            'replacement' => fn($url) => '$1' . $proxy.'/'.url($url)['host'] . '$2',
             'urlPattern' => '/(kuaikan).*\w+\.m3u8/'
         ],
         [
@@ -38,7 +38,7 @@ function fetchReplace($url, $rqc = 0): array|false|string|null
         ],
         [
             'pattern' => '/(\n)(\/\w+\/)/',
-            'replacement' => fn($url) => '$1' . URL($url)['origin'] . '$2',
+            'replacement' => fn($url) => '$1' . url($url)['origin'] . '$2',
             'urlPattern' => '/\w+\.m3u8/'
         ],
         [
@@ -61,7 +61,7 @@ function fetchReplace($url, $rqc = 0): array|false|string|null
 //            'ignore_errors' => true,
             'header' => implode("\n", [
                 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
-                'Referer: '. URL($url)['origin'],
+                'Referer: '. url($url)['origin'],
             ])
         ],
         'ssl' => [
@@ -87,7 +87,9 @@ function fetchReplace($url, $rqc = 0): array|false|string|null
     }
 
     foreach ($rules as $rule) {
-        if (!empty($rule['urlPattern']) && !preg_match($rule['urlPattern'], $url)) continue;
+        if (!empty($rule['urlPattern']) && !preg_match($rule['urlPattern'], $url)) {
+            continue;
+        }
         $body = preg_replace(
             $rule['pattern'],
             is_callable($rule['replacement']) ? $rule['replacement']($url) : $rule['replacement'],
