@@ -41,7 +41,9 @@ jobs:
         with: 
           node-version: '20.x'
           cache: 'pnpm'
-      - run: | 
+
+      - name: Setup Pages
+        run: | 
           pnpm i
           pnpm run build
 
