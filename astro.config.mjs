@@ -1,6 +1,5 @@
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
-import prefetch from '@astrojs/prefetch';
 import partytown from '@astrojs/partytown';
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -11,11 +10,8 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://stevie.top',
+  prefetch: true,
   integrations: [
-    // https://docs.astro.build/en/guides/integrations-guide/prefetch/
-    // prefetch({
-    //   selector: "a[href^='/']"
-    // }),
     // https://starlight.astro.build/
     starlight({
       title: 'Stevie Home',

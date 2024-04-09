@@ -6,6 +6,7 @@
 <div class="text-center">
     <h1>Hls.js 播放base64视频</h1>
     <video class="w-full" id="video" controls />
+    <a href="https://swarm-cloud.github.io/hls-p2p-engine/demo/hlsjs.html" target="_blank">例子</a>
 </div>
 <script src="https://fastly.jsdelivr.net/npm/swarmcloud-hls@latest/dist/hls.min.js"></script>
 <script type="module" is:inline>
@@ -73,7 +74,7 @@
         //     });
         // }
         else{
-            new Hls.P2pEngine(p2pConfig);
+            new P2PEngineHls(p2pConfig);
         }
     }
     playerHlsjs()
