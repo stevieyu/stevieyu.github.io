@@ -37,6 +37,9 @@ function fetch($url, $options): array
         array_map(fn($v) => explode(': ', $v)[0], $headers),
         array_map(fn($v) => explode(': ', $v)[1], $headers),
     );
+
+    $body = $body ?? '';    
+
     return compact('body', 'status', 'headers');
 }
 
@@ -55,7 +58,7 @@ function jsURL($url): stdClass
 function filterM3U8NotSort($content) {
     $prev = 0;
     $isSort = true;
-    $matches = array_values(preg_grep('/\w+.ts/', explode("\n",$content ?? '')));
+    $matches = array_values(preg_grep('/\w+.ts/', explode("\n",$content)));
     
     return array_values(array_filter($matches, function($i,$idx) use (&$prev, &$isSort) {
         $current = intval(preg_replace('/.*?(\d+).ts/', '$1', $i));
@@ -94,26 +97,10 @@ function generateRegexpFromStrings($array){
     }, $commonString);
 }
 function removeM3U8Ads($content, $list) {
-    $regex = '/(#EXT-X-DISCONTINUITY\s)?(.*?\s'.generateRegexpFromStrings($list).'\s){2,}/';
+    $regex = '/.*?\s'.generateRegexpFromStrings($list).'\s/';
     $content = preg_replace($regex, '', $content);
 
     return $content;
-}
-function getCurrentUrl(){
-    $defaultUrl = 'https://httpbun.com/anything'.$_SERVER['REQUEST_URI'];
-    $url = 'https:/'.$_SERVER['REQUEST_URI'];
-    // $url = 'https://ukzy.ukubf8.com/20240418/gDkT65mK/2000kb/hls/index.m3u8';
-    $url = 'https://yzzy1.play-cdn20.com/20240417/38131_a1c8acbe/index.m3u8';
-    try{
-        $url = jsURL($url);
-    }catch(Exception $e){
-        $url = jsURL($defaultUrl);
-    }
-    if(empty($url->host)){
-        $url = jsURL($defaultUrl);
-    }
-    
-    return $url;
 }
 function m3u8BodyHandler($body, $url){
     $hasTs = strstr($body, '.ts');
@@ -130,12 +117,31 @@ function m3u8BodyHandler($body, $url){
         $body = preg_replace('/#EXT-X-K.*?\s(.*\s)*?.*?Y\s/', '', $body); //ukzy
         
         $ads = filterM3U8NotSort($body);
+        // print_r($ads);
         if(count($ads)) {
             $body = removeM3U8Ads($body, $ads);
         }
     }
     return $body;
 }
+function getCurrentUrl(){
+    $defaultUrl = 'https://httpbun.com/anything'.$_SERVER['REQUEST_URI'];
+    $url = 'https:/'.$_SERVER['REQUEST_URI'];
+    // $url = 'https://ukzy.ukubf8.com/20240418/gDkT65mK/2000kb/hls/index.m3u8';
+    // $url = 'https://yzzy1.play-cdn20.com/20240417/38131_a1c8acbe/index.m3u8';
+    $url = 'https://s3.bfengbf.com/video/leizhinvwang/第13集/index.m3u8';
+    try{
+        $url = jsURL($url);
+    }catch(Exception $e){
+        $url = jsURL($defaultUrl);
+    }
+    if(empty($url->host)){
+        $url = jsURL($defaultUrl);
+    }
+    
+    return $url;
+}
+
 
 $url = getCurrentUrl();
 
@@ -148,11 +154,12 @@ $options = [
 
 $res = fetch($url->href, $options);
 
-$m3u8Url = preg_replace('/((\S+\s)+)(.*?m3u8)/', '$3', $res['body']);
-if($m3u8Url){
-    $url = jsURL($url->origin . $url->pathdir . str_replace($url->pathdir, '', $m3u8Url));
+preg_match('/.*?m3u8/', $res['body'], $bodyMatches);
+if(!empty($bodyMatches[0])){
+    $url = jsURL($url->origin . $url->pathdir . str_replace($url->pathdir, '', $bodyMatches[0]));
     $res = fetch($url->href, $options);
 }
+
 
 $res['body'] = m3u8BodyHandler($res['body'], $url);
 $res['body'] = preg_replace('/(\w+.ts)/', $url->origin.$url->pathdir.'$1', $res['body']);
