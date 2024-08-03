@@ -3,6 +3,7 @@ import starlight from '@astrojs/starlight';
 import partytown from '@astrojs/partytown';
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import swup from '@swup/astro';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
@@ -12,6 +13,7 @@ export default defineConfig({
   site: 'https://stevie.top',
   prefetch: true,
   integrations: [
+    swup(),
     // https://starlight.astro.build/
     starlight({
       title: 'Stevie Home',
