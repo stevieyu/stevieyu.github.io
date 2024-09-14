@@ -110,15 +110,14 @@
 </script>
 
 <div hx-target="this" hx-ext="alpine-morph" hx-swap="morph"></div>
-<div x-data="{url: 'https://s.stevie.top/fastly.jsdelivr.net/gh/pradt2/always-online-stun@master/valid_hosts.txt', list: [], count: 0, remain: 0}">
+<div x-data="{url: 'https://fastly.jsdelivr.net/gh/pradt2/always-online-stun@master/valid_hosts.txt', list: [], count: 0, remain: 0}">
     <input x-model="url" class="w-full" 
     :hx-get="url" 
     hx-trigger="load, keyup changed delay:1s" hx-target="textarea"
     hx-on::config-request="event.detail.path = this.value" />
-    <div x-text="url"></div>
-    <div class="flex">
-        <button x-on:click="testUrl($data)" x-text="`测试` + (count?'中':'')">测试</button>
-        <textarea class="w-full"></textarea>
+    <div class="flex mt-4">
+        <textarea class="w-full block"></textarea>
+        <button class="ml-4 min-w-20" x-on:click="testUrl($data)" x-text="`测试` + (count?'中':'')">测试</button>
     </div>
     <span x-text="`第${count}轮测试`"></span>
     &nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp;
