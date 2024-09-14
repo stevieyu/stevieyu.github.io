@@ -10,20 +10,18 @@
     "astro": "astro",
     "postinstall": "astro telemetry disable"
   },
-  "dependencies": {
-  },
   "devDependencies": {
-    "tailwindcss": "^3.4.7",
-    "@swup/astro": "^1.4.1",
-    "@astrojs/partytown": "^2.1.1",
+    "@astrojs/partytown": "^2.1.2",
     "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/starlight": "^0.25",
+    "@astrojs/starlight": "^0.25.5",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.13.1",
-    "cssnano": "^7",
+    "@swup/astro": "^1.4.1",
+    "astro": "^4.15.6",
+    "cssnano": "^7.0.6",
     "postcss-preset-env": "^9.6.0",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "tailwindcss": "^3.4.11"
   },
   "browserslist": [
     "ios >= 12"
