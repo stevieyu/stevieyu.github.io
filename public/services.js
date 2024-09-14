@@ -1,24 +1,24 @@
-import 'https://s.stevie.top/esm.sh/@hotwired/turbo@7.3.0?bundle'
-import morphdom from 'https://s.stevie.top/esm.sh/morphdom@2.7.0?bundle'
-addEventListener("turbo:before-render", (event) => {
-	event.detail.render = (currentElement, newElement) => {
-		morphdom(currentElement.querySelector(`.main-frame`), newElement.querySelector(`.main-frame`))
-		morphdom(currentElement.querySelector(`nav.sidebar`), newElement.querySelector(`nav.sidebar`))
-		document.querySelector('dialog').click()
-	}
-})
-addEventListener("turbo:before-visit", (event) => {
-	const excpReg = /^\/$/
-	if(excpReg.test(new URL(event.detail.url).pathname) || excpReg.test(location.pathname)){
-		event.preventDefault()
-		location.href = event.detail.url
-	}
-})
-addEventListener('popstate', (event) => {
-    if (event.state) {
-	Turbo.visit(location.pathname + location.search)
-    }
-});
+// import 'https://s.stevie.top/esm.sh/@hotwired/turbo@7.3.0?bundle'
+// import morphdom from 'https://s.stevie.top/esm.sh/morphdom@2.7.0?bundle'
+// addEventListener("turbo:before-render", (event) => {
+// 	event.detail.render = (currentElement, newElement) => {
+// 		morphdom(currentElement.querySelector(`.main-frame`), newElement.querySelector(`.main-frame`))
+// 		morphdom(currentElement.querySelector(`nav.sidebar`), newElement.querySelector(`nav.sidebar`))
+// 		document.querySelector('dialog').click()
+// 	}
+// })
+// addEventListener("turbo:before-visit", (event) => {
+// 	const excpReg = /^\/$/
+// 	if(excpReg.test(new URL(event.detail.url).pathname) || excpReg.test(location.pathname)){
+// 		event.preventDefault()
+// 		location.href = event.detail.url
+// 	}
+// })
+// addEventListener('popstate', (event) => {
+//     if (event.state) {
+// 	Turbo.visit(location.pathname + location.search)
+//     }
+// });
 
 import * as Sentry from 'https://s.stevie.top/esm.sh/@sentry/browser@7.69.0?bundle'
 Sentry.init({
