@@ -53,6 +53,11 @@ export default defineConfig({
           directory: 'notes'
         }
       }, {
+        label: '工具',
+        autogenerate: {
+          directory: 'tools'
+        }
+      }, {
         label: '例子',
         autogenerate: {
           directory: 'examples'
