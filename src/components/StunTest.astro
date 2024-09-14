@@ -1,9 +1,14 @@
-<script src="https://unpkg.com/htmx.org@1"></script>
-<script src="https://unpkg.com/alpinejs@3"></script>
+<script src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
 <script type="module">
+    import htmx from 'https://fastly.jsdelivr.net/npm/htmx.org@2.0.2/dist/htmx.esm.min.js';
     import SimplePeer from 'https://fastly.jsdelivr.net/npm/@thaunknown/simple-peer@10.0.10/lite.js/+esm'
-    const {htmx, Alpine} = window
+
+    window.htmx = htmx;
+    window.SimplePeer = SimplePeer;
+
+
+    htmx.config.selfRequestsOnly = false
 
     const initPeer = (data = null, iceServers = []) => new Promise((resolve, reject) => {
         const peer = new SimplePeer({
