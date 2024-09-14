@@ -1,9 +1,9 @@
-<script src="https://cdn.bootcdn.net/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
-<script src="https://unpkg.b-cdn.net/htmx.org@1.9.6"></script>
-<script src="https://unpkg.b-cdn.net/alpinejs@3.13.0"></script>
+<script src="https://unpkg.com/htmx.org@1"></script>
+<script src="https://unpkg.com/alpinejs@3"></script>
 
 <script type="module">
-    const {SimplePeer, htmx, Alpine} = window
+    import SimplePeer from 'https://fastly.jsdelivr.net/npm/@thaunknown/simple-peer@10.0.10/lite.js/+esm'
+    const {htmx, Alpine} = window
 
     const initPeer = (data = null, iceServers = []) => new Promise((resolve, reject) => {
         const peer = new SimplePeer({
