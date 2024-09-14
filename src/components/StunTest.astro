@@ -1,14 +1,18 @@
-<script src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
-
 <script type="module">
+    // import 'https://fastly.jsdelivr.net/npm/hyperscript.org@0.9.12'
+
+    // import 'https://fastly.jsdelivr.net/npm/@alpinejs/morph@3.14.1/dist/cdn.min.js'
+    import 'https://fastly.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js'
+
     import htmx from 'https://fastly.jsdelivr.net/npm/htmx.org@2.0.2/dist/htmx.esm.min.js';
-    import SimplePeer from 'https://fastly.jsdelivr.net/npm/@thaunknown/simple-peer@10.0.10/lite.js/+esm'
-
     window.htmx = htmx;
-    window.SimplePeer = SimplePeer;
-
-
     htmx.config.selfRequestsOnly = false
+    htmx.onLoad(() => {
+        // import('https://unpkg.com/htmx-ext-alpine-morph@2.0.0/alpine-morph.js')
+    })
+
+    import SimplePeer from 'https://fastly.jsdelivr.net/npm/@thaunknown/simple-peer@10.0.10/lite.js/+esm'
+    window.SimplePeer = SimplePeer;
 
     const initPeer = (data = null, iceServers = []) => new Promise((resolve, reject) => {
         const peer = new SimplePeer({
@@ -105,8 +109,13 @@
 
 </script>
 
+<div hx-target="this" hx-ext="alpine-morph" hx-swap="morph"></div>
 <div x-data="{url: 'https://s.stevie.top/fastly.jsdelivr.net/gh/pradt2/always-online-stun@master/valid_hosts.txt', list: [], count: 0, remain: 0}">
-    <input x-model="url" class="w-full" x-bind:hx-get="url" hx-trigger="mouseleave,load" hx-target="textarea"/>
+    <input x-model="url" class="w-full" 
+    :hx-get="url" 
+    hx-trigger="load, keyup changed delay:1s" hx-target="textarea"
+    hx-on::config-request="event.detail.path = this.value" />
+    <div x-text="url"></div>
     <div class="flex">
         <button x-on:click="testUrl($data)" x-text="`测试` + (count?'中':'')">测试</button>
         <textarea class="w-full"></textarea>
@@ -122,6 +131,7 @@
             </tr>
         </template>
     </table>
+</div>
 </div>
 
 
