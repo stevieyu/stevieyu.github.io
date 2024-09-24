@@ -1,0 +1,93 @@
+<link
+        rel="stylesheet"
+        media="(prefers-color-scheme:light)"
+        href="https://fastly.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.min.css"
+/>
+<link
+        rel="stylesheet"
+        media="(prefers-color-scheme:dark)"
+        href="https://fastly.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/dark.min.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');"
+/>
+<script type="module" src="https://esm.sh/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js?bundle" defer></script>
+
+<style>
+:not(:defined) {
+    visibility: hidden;
+}
+#container {
+    opacity: 0;
+}
+#container.ready {
+    opacity: 1;
+    transition: .25s opacity;
+}
+</style>
+<script type="module">
+    import {Parser} from 'https://fastly.jsdelivr.net/npm/m3u8-parser@7.2.0/dist/m3u8-parser.es.js/+esm'
+    import 'https://fastly.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js'
+    const container = document.querySelector('#container');
+    Promise.allSettled(
+        `sl-button`
+        .split(',').map(customElements.whenDefined))
+        .then(() => container.classList.add('ready'));
+
+    Math.add = (num1, num2) => {
+        const factor = Math.pow(10, Math.max(num1.toString().split('.')[1]?.length || 0, num2.toString().split('.')[1]?.length || 0));
+        return (Math.round(num1 * factor) + Math.round(num2 * factor)) / factor;
+    }
+    Date.formatSeconds = (totalSeconds) => `${Math.floor(totalSeconds / 60)}m${Math.floor(totalSeconds % 60)}s`;
+
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('store', () => ({
+            url: 'https://svipsvip.ffzy-online5.com/20240806/31051_23ca67cf/2000k/hls/mixed.m3u8',
+            list: [],
+            parse() {
+                const url = this.url.trim();
+                fetch(new URL(url)).then(r=>r.text()).then(manifest => {
+                    const parser = new Parser({
+                        url,
+                    });
+                    parser.push(manifest);
+                    parser.end();
+                    
+                    let s = 0;
+                    this.list = parser.manifest.segments.map(i => {
+                        s = Math.add(s, i.duration);
+                        let src = i.uri;
+                        if (src.startsWith('/')) {
+                            src = new URL(url).origin + src;
+                        }else if (!src.startsWith('http')) {
+                            src = url.replace(/\w+\.m3u8$/, i.uri);
+                        }
+                        return {
+                            src,
+                            time: Date.formatSeconds(s),
+                            ...i
+                        }
+                    });
+                    // console.log(this.list);
+                })
+            }
+        }))
+        
+    })
+
+   
+</script>
+<div id="container" x-data="store">
+    <sl-textarea label="M3U8 URL" x-model="url" @keyup="parse"/>
+    <table>
+        <template x-for="(v, idx) in list">
+        <tr >
+            <td>
+                <a :href="v.src" target="_blank" x-text="v.uri"></a>
+            </td>
+            <td x-text="v.time"></td>
+            <td x-text="v.duration"></td>
+            <td x-text="v.timeline"></td>
+        </tr>
+        </template>
+    </table>
+</div>
