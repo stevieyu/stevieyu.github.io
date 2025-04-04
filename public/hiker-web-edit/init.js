@@ -203,4 +203,7 @@ async function initMonacoEditor() {
       };
     },
   });
+
+  monaco.editor.create(document.querySelector('.monacoEditor'))
+
 }
