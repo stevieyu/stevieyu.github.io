@@ -44,7 +44,7 @@ jobs:
 
       - name: generate dist
         run: | 
-          pnpm i
+          pnpm i --no-frozen-lockfile
           pnpm run build          
 
       - name: Setup Pages
