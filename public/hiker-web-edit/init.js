@@ -14,8 +14,8 @@ import { SNIPPET, RESOURCE_INDENTIFIER, LINK_ROUTE } from './suggestions.js';
 
 // 加载 Prettier 用于格式化
 // https://unpkg.com/browse/prettier@2.8.8/esm/
-import prettier from 'https://cdn.jsdmirror.com/npm/prettier@2.8.8/esm/standalone.mjs';
-import parserBabel from 'https://cdn.jsdmirror.com/npm/prettier@2.8.8/esm/parser-babel.mjs';
+import prettier from 'https://fastly.jsdelivr.net/npm/prettier@2.8.8/esm/standalone.mjs';
+import parserBabel from 'https://fastly.jsdelivr.net/npm/prettier@2.8.8/esm/parser-babel.mjs';
 // Prettier 更多配置：https://prettier.io/docs/en/options.html
 const prettierOptions = {
   singleQuote: true, // 单引号 默认 false
