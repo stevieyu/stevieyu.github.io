@@ -204,6 +204,20 @@ async function initMonacoEditor() {
     },
   });
 
-  monaco.editor.create(document.querySelector('.monacoEditor'))
+  monaco.editor.create(document.querySelector('.monacoEditor'), {
+    value: '',
+    language: 'typescript',
+    guides: {
+      bracketPairs: "active"
+    },
+    automaticLayout: !0,
+    tabSize: 2,
+    scrollBeyondLastLine: !1,
+    wordWrap: "on",
+    scrollbar: {
+        alwaysConsumeMouseWheel: !1,
+        verticalSliderSize: 8
+    }
+  })
 
 }
