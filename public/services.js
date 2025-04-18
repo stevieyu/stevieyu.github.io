@@ -20,7 +20,7 @@
 //     }
 // });
 
-import * as Sentry from 'https://s.stevie.top/esm.sh/@sentry/browser@7.69.0?bundle'
+import * as Sentry from 'https://esm.sh/@sentry/browser@7.69.0?bundle'
 Sentry.init({
 	dsn: "https://bf0874f6948140d284dd2ac1e20430b5@o39671.ingest.sentry.io/4505606641745920",
 	integrations: [
@@ -37,7 +37,7 @@ Sentry.init({
 	replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
-import OpenReplay from 'https://s.stevie.top/esm.sh/@openreplay/tracker@9.0.8?bundle'
+import OpenReplay from 'https://esm.sh/@openreplay/tracker@9.0.8?bundle'
 const tracker = new OpenReplay({
 	projectKey: '7556503659928888',
 	onStart: ({ sessionToken }) => {
