@@ -32,6 +32,14 @@ export default defineConfig({
             type: IS_PROD ? 'module' : 'text',
             defer: true
           }
+        },
+        {
+          tag: 'script',
+          attrs: {
+            src: 'https://cdn.jsdelivr.net/gh/marsbos/flynt.js@v1.0.1/flynt.min.js',
+            type: 'text',
+            defer: true
+          }
         }
       ],
       customCss: [
